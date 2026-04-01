@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> f(26,0);
+        int n=s.length();
+        int low=0,high=0,maxcnt=0,res=0;
+        for(high=0;high<n;high++){
+            f[s[high]-'A']++;
+            int len=high-low+1;
+            maxcnt=max(maxcnt,f[s[high]-'A']);
+            //int diff=len-maxcnt;
+            while((len-maxcnt)>k){
+                f[s[low]-'A']--;
+                low++;
+                len=high-low+1;
+                
+            }
+            res=max(len,res);
+        }
+        return res;
+        
+    }
+};
